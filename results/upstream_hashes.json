@@ -1,0 +1,31 @@
+{
+  "repo": "encode/httpx",
+  "ref": "0.28.1",
+  "sha1": {
+    "httpx/__init__.py": "26584c6ae6c503eb61f72d20bc894e1d32741ffd",
+    "httpx/__version__.py": "2235807621d8b72548c24792d112c83911873b9c",
+    "httpx/_api.py": "428c33f18aab47e41176149ed14d94bd8ecdc7b7",
+    "httpx/_auth.py": "d12a60b540996aaf2f93c2dec1ab6b3815bfbbf6",
+    "httpx/_client.py": "ffd9e6a06cdab64c71aef8ef7be33eef7ba5db67",
+    "httpx/_config.py": "6d5e921df6c4b35c7455cc8749fdc9ddccad4d83",
+    "httpx/_content.py": "28510cb4d483533a70139da764dd03d75b3f6773",
+    "httpx/_decoders.py": "556d0e46aa956b95f9ac134e38ab42337afa0cb7",
+    "httpx/_exceptions.py": "d83218b411a6469a664793c2fa5126f0fd31c2ac",
+    "httpx/_main.py": "f1e376e6e69a9013fe57cced3181ff8b9bc1a95a",
+    "httpx/_models.py": "fa1ee00b603010cd0e3d56b7f8ed51048988f30e",
+    "httpx/_multipart.py": "1da42ec9990dcf90b1209d3b3bdb919fa0351fcd",
+    "httpx/_status_codes.py": "ebf323dfe0719b88794cde2bdc70e2586e874e6d",
+    "httpx/_transports/__init__.py": "c786ce4e1bc5b1b35fcf9e57b71518241fb9f3ee",
+    "httpx/_transports/asgi.py": "2f92761e50ff6888bb37e9e477b66c6d79a014c1",
+    "httpx/_transports/base.py": "5bef1d723951a51c09bcb4ad81445fcae0d5715b",
+    "httpx/_transports/default.py": "79fd270cb3f27adcc29817efed9b57bd125b3b1d",
+    "httpx/_transports/mock.py": "756bb63ba09e596ecdebdc4b60932f3e464d4806",
+    "httpx/_transports/wsgi.py": "fe048ef6ab57db5e03af35f83bbd9b3b509957ae",
+    "httpx/_types.py": "596dd71226145d35ff33e11ff72467c549fe6fd4",
+    "httpx/_urlparse.py": "73b23952cd94f85b5183f00b50349d54ee880dee",
+    "httpx/_urls.py": "89e2cae050855d950ba6b0266e4ed4b26e1e00ae",
+    "httpx/_utils.py": "49bc1e11bfc56c18f49d86d0f5f78f9efe929b07",
+    "httpx/py.typed": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+    "LICENSE.md": "2f9a422e6ae22185bd3e9cdaec727ac95ab47bbb"
+  }
+}

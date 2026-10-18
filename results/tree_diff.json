@@ -1,0 +1,23 @@
+{
+  "upstream_file_count": 25,
+  "shipped_file_count": 35,
+  "common_file_count": 25,
+  "changed": [
+    "httpx/_models.py"
+  ],
+  "only_in_upstream": [],
+  "only_in_shipped": [
+    "AUDIT_REPORT.md",
+    "BASELINE_TESTS.txt",
+    "MODIFICATION_LOG.md",
+    "ORIGINAL_BASELINE_REPRODUCTION.txt",
+    "README.md",
+    "UPSTREAM_PROVENANCE.md",
+    "VERIFICATION_RESULTS.md",
+    "patches/0001-merge-request-query-parameters.patch",
+    "pyproject.toml",
+    "tests/test_request_params_regression.py"
+  ],
+  "only_in_shipped_unexpected": [],
+  "verdict": "only _models.py changed"
+}

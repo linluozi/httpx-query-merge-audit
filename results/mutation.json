@@ -1,0 +1,69 @@
+{
+  "suite_size": "9 tests in tests/test_request_params_regression.py",
+  "mutants_total": 7,
+  "mutants_detected": 3,
+  "survivors": [
+    "M0_unchanged",
+    "M3_truthiness_guard",
+    "M4_drop_none_branch",
+    "M5_drop_fragment"
+  ],
+  "rows": [
+    {
+      "mutant": "M0_unchanged",
+      "description": "control: the code exactly as shipped",
+      "passed": 9,
+      "failed": 0,
+      "summary": "9 passed in 0.54s",
+      "detected": false
+    },
+    {
+      "mutant": "M1_revert_to_replace",
+      "description": "revert the fix entirely",
+      "passed": 1,
+      "failed": 8,
+      "summary": "8 failed, 1 passed in 0.64s",
+      "detected": true
+    },
+    {
+      "mutant": "M2_copy_with_instead_of_merge",
+      "description": "replace the query instead of merging it",
+      "passed": 1,
+      "failed": 8,
+      "summary": "8 failed, 1 passed in 0.72s",
+      "detected": true
+    },
+    {
+      "mutant": "M3_truthiness_guard",
+      "description": "use truthiness instead of an identity check",
+      "passed": 9,
+      "failed": 0,
+      "summary": "9 passed in 0.54s",
+      "detected": false
+    },
+    {
+      "mutant": "M4_drop_none_branch",
+      "description": "always merge, never take the fast path",
+      "passed": 9,
+      "failed": 0,
+      "summary": "9 passed in 0.51s",
+      "detected": false
+    },
+    {
+      "mutant": "M5_drop_fragment",
+      "description": "merge but silently drop the URL fragment",
+      "passed": 9,
+      "failed": 0,
+      "summary": "9 passed in 0.54s",
+      "detected": false
+    },
+    {
+      "mutant": "M6_merge_then_clear_old_keys",
+      "description": "keep the new signature but still discard old keys",
+      "passed": 0,
+      "failed": 9,
+      "summary": "9 failed in 1.00s",
+      "detected": true
+    }
+  ]
+}

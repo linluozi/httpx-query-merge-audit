@@ -1,0 +1,246 @@
+{
+  "noise_floor": {
+    "request_with_query": {
+      "ratio_median": 0.9377,
+      "ratio_p25": 0.8075,
+      "ratio_p75": 0.9828,
+      "ratio_min": 0.5118,
+      "ratio_max": 1.039,
+      "ratio_samples": [
+        0.8597,
+        0.9828,
+        0.7242,
+        0.9435,
+        0.5118,
+        0.9377,
+        0.8075,
+        1.0001,
+        1.039
+      ]
+    },
+    "request_plain": {
+      "ratio_median": 1.0321,
+      "ratio_p25": 0.8884,
+      "ratio_p75": 1.0729,
+      "ratio_min": 0.3731,
+      "ratio_max": 1.3126,
+      "ratio_samples": [
+        0.8344,
+        1.0638,
+        1.3126,
+        1.1063,
+        0.9026,
+        0.8884,
+        0.3731,
+        1.0321,
+        1.0729
+      ]
+    },
+    "request_no_params": {
+      "ratio_median": 1.0746,
+      "ratio_p25": 1.0169,
+      "ratio_p75": 1.1816,
+      "ratio_min": 0.7398,
+      "ratio_max": 1.2206,
+      "ratio_samples": [
+        0.9292,
+        1.1816,
+        1.1013,
+        1.2005,
+        1.0746,
+        1.0371,
+        0.7398,
+        1.2206,
+        1.0169
+      ]
+    }
+  },
+  "cases": {
+    "request_with_query": {
+      "upstream_median_us": 27.213,
+      "arms": {
+        "pr3759": {
+          "ratio_median": 1.86,
+          "ratio_p25": 1.712,
+          "ratio_p75": 1.918,
+          "ratio_min": 1.477,
+          "ratio_max": 2.276,
+          "ratio_samples": [
+            1.86,
+            1.884,
+            1.477,
+            2.121,
+            2.276,
+            1.823,
+            1.918,
+            1.712,
+            1.668
+          ],
+          "median_us": 50.618
+        },
+        "pr3761": {
+          "ratio_median": 1.91,
+          "ratio_p25": 1.818,
+          "ratio_p75": 1.974,
+          "ratio_min": 1.626,
+          "ratio_max": 2.122,
+          "ratio_samples": [
+            1.837,
+            2.122,
+            1.626,
+            2.024,
+            1.937,
+            1.91,
+            1.974,
+            1.818,
+            1.699
+          ],
+          "median_us": 51.567
+        },
+        "shipped": {
+          "ratio_median": 1.904,
+          "ratio_p25": 1.871,
+          "ratio_p75": 2.061,
+          "ratio_min": 1.756,
+          "ratio_max": 2.135,
+          "ratio_samples": [
+            1.889,
+            1.904,
+            1.867,
+            2.12,
+            2.061,
+            2.135,
+            2.038,
+            1.756,
+            1.871
+          ],
+          "median_us": 53.624
+        }
+      }
+    },
+    "request_plain": {
+      "upstream_median_us": 26.307,
+      "arms": {
+        "pr3759": {
+          "ratio_median": 1.391,
+          "ratio_p25": 1.386,
+          "ratio_p75": 1.433,
+          "ratio_min": 1.238,
+          "ratio_max": 1.487,
+          "ratio_samples": [
+            1.339,
+            1.458,
+            1.238,
+            1.416,
+            1.391,
+            1.386,
+            1.433,
+            1.487,
+            1.388
+          ],
+          "median_us": 36.677
+        },
+        "pr3761": {
+          "ratio_median": 1.541,
+          "ratio_p25": 1.496,
+          "ratio_p75": 1.584,
+          "ratio_min": 1.404,
+          "ratio_max": 1.646,
+          "ratio_samples": [
+            1.646,
+            1.485,
+            1.56,
+            1.584,
+            1.636,
+            1.404,
+            1.506,
+            1.496,
+            1.541
+          ],
+          "median_us": 39.527
+        },
+        "shipped": {
+          "ratio_median": 1.545,
+          "ratio_p25": 1.504,
+          "ratio_p75": 1.682,
+          "ratio_min": 1.454,
+          "ratio_max": 1.844,
+          "ratio_samples": [
+            1.706,
+            1.454,
+            1.682,
+            1.844,
+            1.564,
+            1.495,
+            1.532,
+            1.545,
+            1.504
+          ],
+          "median_us": 40.749
+        }
+      }
+    },
+    "request_no_params": {
+      "upstream_median_us": 18.486,
+      "arms": {
+        "pr3759": {
+          "ratio_median": 0.995,
+          "ratio_p25": 0.924,
+          "ratio_p75": 1.025,
+          "ratio_min": 0.886,
+          "ratio_max": 1.115,
+          "ratio_samples": [
+            0.886,
+            0.995,
+            1.115,
+            1.08,
+            0.966,
+            1.011,
+            0.905,
+            0.924,
+            1.025
+          ],
+          "median_us": 18.174
+        },
+        "pr3761": {
+          "ratio_median": 0.973,
+          "ratio_p25": 0.934,
+          "ratio_p75": 1.001,
+          "ratio_min": 0.83,
+          "ratio_max": 1.098,
+          "ratio_samples": [
+            0.916,
+            0.998,
+            1.098,
+            1.009,
+            0.973,
+            0.934,
+            0.83,
+            0.936,
+            1.001
+          ],
+          "median_us": 17.706
+        },
+        "shipped": {
+          "ratio_median": 0.991,
+          "ratio_p25": 0.885,
+          "ratio_p75": 1.057,
+          "ratio_min": 0.843,
+          "ratio_max": 2.29,
+          "ratio_samples": [
+            0.885,
+            0.883,
+            1.206,
+            2.29,
+            0.991,
+            0.925,
+            0.843,
+            0.999,
+            1.057
+          ],
+          "median_us": 18.035
+        }
+      }
+    }
+  }
+}

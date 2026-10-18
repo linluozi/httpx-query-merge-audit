@@ -1,0 +1,41 @@
+{
+  "wheel": "httpx_query_merge_patched-0.28.1+audit1-py3-none-any.whl",
+  "install": {
+    "import_ok": true,
+    "file": "E:\\Claw\\WorkBuddy-env\\cn\\temp\\httpx-pkg-l3b1pse_\\v1\\Lib\\site-packages\\httpx\\__init__.py",
+    "merge": "https://e.com/s?a=1&b=2",
+    "dists": [
+      "httpx-query-merge-patched"
+    ]
+  },
+  "coexist": {
+    "import_ok": true,
+    "file": "E:\\Claw\\WorkBuddy-env\\cn\\temp\\httpx-pkg-l3b1pse_\\v1\\Lib\\site-packages\\httpx\\__init__.py",
+    "merge": "https://e.com/s?b=2",
+    "dists": [
+      "httpx",
+      "httpx-query-merge-patched"
+    ]
+  },
+  "after_uninstall": {
+    "import_ok": false,
+    "file": null,
+    "merge": null,
+    "dists": [
+      "httpx"
+    ],
+    "error": "ModuleNotFoundError: No module named 'httpx'"
+  },
+  "extras": {
+    "http2": "no such extra (declared nowhere)",
+    "socks": "no such extra (declared nowhere)",
+    "cli": "no such extra (declared nowhere)",
+    "brotli": "no such extra (declared nowhere)",
+    "zstd": "no such extra (declared nowhere)"
+  },
+  "console_scripts": [],
+  "file_collateral": {
+    "py_files_before": 23,
+    "py_files_after": 0
+  }
+}

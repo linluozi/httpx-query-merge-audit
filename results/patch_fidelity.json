@@ -1,0 +1,32 @@
+{
+  "patch_applies": true,
+  "patch_log": [
+    "patching file httpx/_models.py",
+    "patching file tests/test_request_params_regression.py"
+  ],
+  "files": [
+    {
+      "file": "httpx/_models.py",
+      "patched_bytes": 45039,
+      "delivered_bytes": 45039,
+      "patched_crlf": 0,
+      "delivered_crlf": 0,
+      "identical_raw": true,
+      "identical_lf": true,
+      "sha1_patched": "c7f200e4f39ab7df417c859727242cf14dc7b6ae",
+      "sha1_delivered": "c7f200e4f39ab7df417c859727242cf14dc7b6ae"
+    },
+    {
+      "file": "tests/test_request_params_regression.py",
+      "patched_bytes": 3557,
+      "delivered_bytes": 3557,
+      "patched_crlf": 0,
+      "delivered_crlf": 0,
+      "identical_raw": true,
+      "identical_lf": true,
+      "sha1_patched": "3eb9cb834fdff4bbfec95e431019245abd4015cc",
+      "sha1_delivered": "3eb9cb834fdff4bbfec95e431019245abd4015cc"
+    }
+  ],
+  "all_identical_raw": true
+}

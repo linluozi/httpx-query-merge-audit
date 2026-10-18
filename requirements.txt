@@ -1,0 +1,2 @@
+# Audit scripts only. The packages under audit are fetched, not installed.
+matplotlib>=3.8

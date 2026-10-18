@@ -1,0 +1,493 @@
+{
+  "cases": [
+    {
+      "id": "issue_repro",
+      "description": "Issue #3621 repro: URL query must survive a params= merge",
+      "expected": "https://safebooru.org/index.php?page=post&s=list&pid=0&tags=k-on%21",
+      "results": {
+        "pr3759": {
+          "value": "https://safebooru.org/index.php?page=post&s=list&pid=0&tags=k-on%21",
+          "ok": true
+        },
+        "pr3761": {
+          "value": "https://safebooru.org/index.php?page=post&s=list&pid=0&tags=k-on%21",
+          "ok": true
+        },
+        "shipped": {
+          "value": "https://safebooru.org/index.php?page=post&s=list&pid=0&tags=k-on%21",
+          "ok": true
+        },
+        "upstream": {
+          "value": "https://safebooru.org/index.php?pid=0&tags=k-on%21",
+          "ok": false
+        }
+      }
+    },
+    {
+      "id": "override_and_keep",
+      "description": "Same key is replaced, unrelated keys survive",
+      "expected": "https://example.com/search?a=new&keep=1&b=2",
+      "results": {
+        "pr3759": {
+          "value": "https://example.com/search?a=new&keep=1&b=2",
+          "ok": true
+        },
+        "pr3761": {
+          "value": "https://example.com/search?a=new&keep=1&b=2",
+          "ok": true
+        },
+        "shipped": {
+          "value": "https://example.com/search?a=new&keep=1&b=2",
+          "ok": true
+        },
+        "upstream": {
+          "value": "https://example.com/search?a=new&b=2",
+          "ok": false
+        }
+      }
+    },
+    {
+      "id": "empty_params_keeps_query",
+      "description": "params={} is a semantic no-op for the existing query",
+      "expected": "https://example.com/search?token=abc",
+      "results": {
+        "pr3759": {
+          "value": "https://example.com/search?token=abc",
+          "ok": true
+        },
+        "pr3761": {
+          "value": "https://example.com/search?token=abc",
+          "ok": true
+        },
+        "shipped": {
+          "value": "https://example.com/search?token=abc",
+          "ok": true
+        },
+        "upstream": {
+          "value": "https://example.com/search",
+          "ok": false
+        }
+      }
+    },
+    {
+      "id": "repeated_keys_survive",
+      "description": "Repeated existing keys stay repeated when a new key is added",
+      "expected": "tag=python;tag=httpx;page=2",
+      "results": {
+        "pr3759": {
+          "value": "tag=python;tag=httpx;page=2",
+          "ok": true
+        },
+        "pr3761": {
+          "value": "tag=python;tag=httpx;page=2",
+          "ok": true
+        },
+        "shipped": {
+          "value": "tag=python;tag=httpx;page=2",
+          "ok": true
+        },
+        "upstream": {
+          "value": "page=2",
+          "ok": false
+        }
+      }
+    },
+    {
+      "id": "url_object_input",
+      "description": "An httpx.URL object as input is merged too",
+      "expected": "https://example.com/search?sort=recent&page=3",
+      "results": {
+        "pr3759": {
+          "value": "https://example.com/search?sort=recent&page=3",
+          "ok": true
+        },
+        "pr3761": {
+          "value": "https://example.com/search?sort=recent&page=3",
+          "ok": true
+        },
+        "shipped": {
+          "value": "https://example.com/search?sort=recent&page=3",
+          "ok": true
+        },
+        "upstream": {
+          "value": "https://example.com/search?page=3",
+          "ok": false
+        }
+      }
+    },
+    {
+      "id": "no_existing_query",
+      "description": "No pre-existing query: params behave as before",
+      "expected": "https://example.com/search?q=hello+world",
+      "results": {
+        "pr3759": {
+          "value": "https://example.com/search?q=hello+world",
+          "ok": true
+        },
+        "pr3761": {
+          "value": "https://example.com/search?q=hello+world",
+          "ok": true
+        },
+        "shipped": {
+          "value": "https://example.com/search?q=hello+world",
+          "ok": true
+        },
+        "upstream": {
+          "value": "https://example.com/search?q=hello+world",
+          "ok": true
+        }
+      }
+    },
+    {
+      "id": "fragment_preserved",
+      "description": "Fragment survives the merge",
+      "expected": "https://example.com/s?a=1&b=2#sec2",
+      "results": {
+        "pr3759": {
+          "value": "https://example.com/s?a=1&b=2#sec2",
+          "ok": true
+        },
+        "pr3761": {
+          "value": "https://example.com/s?a=1&b=2#sec2",
+          "ok": true
+        },
+        "shipped": {
+          "value": "https://example.com/s?a=1&b=2#sec2",
+          "ok": true
+        },
+        "upstream": {
+          "value": "https://example.com/s?b=2#sec2",
+          "ok": false
+        }
+      }
+    },
+    {
+      "id": "relative_url",
+      "description": "Relative URLs still work",
+      "expected": "/s?a=1&b=2",
+      "results": {
+        "pr3759": {
+          "value": "/s?a=1&b=2",
+          "ok": true
+        },
+        "pr3761": {
+          "value": "/s?a=1&b=2",
+          "ok": true
+        },
+        "shipped": {
+          "value": "/s?a=1&b=2",
+          "ok": true
+        },
+        "upstream": {
+          "value": "/s?b=2",
+          "ok": false
+        }
+      }
+    },
+    {
+      "id": "dup_key_override",
+      "description": "Supplying a key that appears twice collapses it",
+      "expected": "https://e.com/s?a=9",
+      "results": {
+        "pr3759": {
+          "value": "https://e.com/s?a=9",
+          "ok": true
+        },
+        "pr3761": {
+          "value": "https://e.com/s?a=9",
+          "ok": true
+        },
+        "shipped": {
+          "value": "https://e.com/s?a=9",
+          "ok": true
+        },
+        "upstream": {
+          "value": "https://e.com/s?a=9",
+          "ok": true
+        }
+      }
+    },
+    {
+      "id": "list_value",
+      "description": "A list value expands to repeated keys",
+      "expected": "https://e.com/s?a=1&t=x&t=y",
+      "results": {
+        "pr3759": {
+          "value": "https://e.com/s?a=1&t=x&t=y",
+          "ok": true
+        },
+        "pr3761": {
+          "value": "https://e.com/s?a=1&t=x&t=y",
+          "ok": true
+        },
+        "shipped": {
+          "value": "https://e.com/s?a=1&t=x&t=y",
+          "ok": true
+        },
+        "upstream": {
+          "value": "https://e.com/s?t=x&t=y",
+          "ok": false
+        }
+      }
+    },
+    {
+      "id": "bytes_pct2F_upper",
+      "description": "Existing %2F stays %2F byte-for-byte",
+      "expected": "https://e.com/p?sig=ab%2Fcd&x=1",
+      "results": {
+        "pr3759": {
+          "value": "https://e.com/p?sig=ab%2Fcd&x=1",
+          "ok": true
+        },
+        "pr3761": {
+          "value": "https://e.com/p?sig=ab%2Fcd&x=1",
+          "ok": true
+        },
+        "shipped": {
+          "value": "https://e.com/p?sig=ab%2Fcd&x=1",
+          "ok": true
+        },
+        "upstream": {
+          "value": "https://e.com/p?x=1",
+          "ok": false
+        }
+      }
+    },
+    {
+      "id": "bytes_pct2f_lower",
+      "description": "Existing lowercase %2f stays lowercase",
+      "expected": "https://e.com/p?sig=ab%2fcd&x=1",
+      "results": {
+        "pr3759": {
+          "value": "https://e.com/p?sig=ab%2Fcd&x=1",
+          "ok": false
+        },
+        "pr3761": {
+          "value": "https://e.com/p?sig=ab%2Fcd&x=1",
+          "ok": false
+        },
+        "shipped": {
+          "value": "https://e.com/p?sig=ab%2Fcd&x=1",
+          "ok": false
+        },
+        "upstream": {
+          "value": "https://e.com/p?x=1",
+          "ok": false
+        }
+      }
+    },
+    {
+      "id": "bytes_pct20",
+      "description": "Existing %20 stays %20 (not rewritten to +)",
+      "expected": "https://e.com/p?sig=ab%20cd&x=1",
+      "results": {
+        "pr3759": {
+          "value": "https://e.com/p?sig=ab+cd&x=1",
+          "ok": false
+        },
+        "pr3761": {
+          "value": "https://e.com/p?sig=ab+cd&x=1",
+          "ok": false
+        },
+        "shipped": {
+          "value": "https://e.com/p?sig=ab+cd&x=1",
+          "ok": false
+        },
+        "upstream": {
+          "value": "https://e.com/p?x=1",
+          "ok": false
+        }
+      }
+    },
+    {
+      "id": "bytes_tilde",
+      "description": "Existing literal ~ is not normalised away",
+      "expected": "https://e.com/p?t=%7E&x=1",
+      "results": {
+        "pr3759": {
+          "value": "https://e.com/p?t=~&x=1",
+          "ok": false
+        },
+        "pr3761": {
+          "value": "https://e.com/p?t=~&x=1",
+          "ok": false
+        },
+        "shipped": {
+          "value": "https://e.com/p?t=~&x=1",
+          "ok": false
+        },
+        "upstream": {
+          "value": "https://e.com/p?x=1",
+          "ok": false
+        }
+      }
+    },
+    {
+      "id": "bytes_empty_key",
+      "description": "A valueless key keeps its exact form",
+      "expected": "https://e.com/p?flag&x=1",
+      "results": {
+        "pr3759": {
+          "value": "https://e.com/p?flag=&x=1",
+          "ok": false
+        },
+        "pr3761": {
+          "value": "https://e.com/p?flag=&x=1",
+          "ok": false
+        },
+        "shipped": {
+          "value": "https://e.com/p?flag=&x=1",
+          "ok": false
+        },
+        "upstream": {
+          "value": "https://e.com/p?x=1",
+          "ok": false
+        }
+      }
+    },
+    {
+      "id": "bytes_presigned_none",
+      "description": "params=None keeps a presigned URL byte-for-byte",
+      "expected": "https://acct.blob.core.windows.net/c/b?sv=2022-11-02&ss=b&srt=sco&sp=rwdlacupiytfx&se=2027-01-01T00%3A00%3A00Z&st=2026-01-01T00%3A00%3A00Z&spr=https&sig=abc%2Fdef%3D",
+      "results": {
+        "pr3759": {
+          "value": "https://acct.blob.core.windows.net/c/b?sv=2022-11-02&ss=b&srt=sco&sp=rwdlacupiytfx&se=2027-01-01T00%3A00%3A00Z&st=2026-01-01T00%3A00%3A00Z&spr=https&sig=abc%2Fdef%3D",
+          "ok": true
+        },
+        "pr3761": {
+          "value": "https://acct.blob.core.windows.net/c/b?sv=2022-11-02&ss=b&srt=sco&sp=rwdlacupiytfx&se=2027-01-01T00%3A00%3A00Z&st=2026-01-01T00%3A00%3A00Z&spr=https&sig=abc%2Fdef%3D",
+          "ok": true
+        },
+        "shipped": {
+          "value": "https://acct.blob.core.windows.net/c/b?sv=2022-11-02&ss=b&srt=sco&sp=rwdlacupiytfx&se=2027-01-01T00%3A00%3A00Z&st=2026-01-01T00%3A00%3A00Z&spr=https&sig=abc%2Fdef%3D",
+          "ok": true
+        },
+        "upstream": {
+          "value": "https://acct.blob.core.windows.net/c/b?sv=2022-11-02&ss=b&srt=sco&sp=rwdlacupiytfx&se=2027-01-01T00%3A00%3A00Z&st=2026-01-01T00%3A00%3A00Z&spr=https&sig=abc%2Fdef%3D",
+          "ok": true
+        }
+      }
+    },
+    {
+      "id": "bytes_presigned_empty",
+      "description": "params={} keeps a presigned URL byte-for-byte",
+      "expected": "https://acct.blob.core.windows.net/c/b?sv=2022-11-02&ss=b&srt=sco&sp=rwdlacupiytfx&se=2027-01-01T00%3A00%3A00Z&st=2026-01-01T00%3A00%3A00Z&spr=https&sig=abc%2Fdef%3D",
+      "results": {
+        "pr3759": {
+          "value": "https://acct.blob.core.windows.net/c/b?sv=2022-11-02&ss=b&srt=sco&sp=rwdlacupiytfx&se=2027-01-01T00%3A00%3A00Z&st=2026-01-01T00%3A00%3A00Z&spr=https&sig=abc%2Fdef%3D",
+          "ok": true
+        },
+        "pr3761": {
+          "value": "https://acct.blob.core.windows.net/c/b?sv=2022-11-02&ss=b&srt=sco&sp=rwdlacupiytfx&se=2027-01-01T00%3A00%3A00Z&st=2026-01-01T00%3A00%3A00Z&spr=https&sig=abc%2Fdef%3D",
+          "ok": true
+        },
+        "shipped": {
+          "value": "https://acct.blob.core.windows.net/c/b?sv=2022-11-02&ss=b&srt=sco&sp=rwdlacupiytfx&se=2027-01-01T00%3A00%3A00Z&st=2026-01-01T00%3A00%3A00Z&spr=https&sig=abc%2Fdef%3D",
+          "ok": true
+        },
+        "upstream": {
+          "value": "https://acct.blob.core.windows.net/c/b",
+          "ok": false
+        }
+      }
+    },
+    {
+      "id": "client_bytes_empty",
+      "description": "Client.get(url, params={}) keeps the query byte-for-byte",
+      "expected": "https://acct.blob.core.windows.net/c/b?sv=2022-11-02&ss=b&srt=sco&sp=rwdlacupiytfx&se=2027-01-01T00%3A00%3A00Z&st=2026-01-01T00%3A00%3A00Z&spr=https&sig=abc%2Fdef%3D",
+      "results": {
+        "pr3759": {
+          "value": "https://acct.blob.core.windows.net/c/b?sv=2022-11-02&ss=b&srt=sco&sp=rwdlacupiytfx&se=2027-01-01T00%3A00%3A00Z&st=2026-01-01T00%3A00%3A00Z&spr=https&sig=abc%2Fdef%3D",
+          "ok": true
+        },
+        "pr3761": {
+          "value": "https://acct.blob.core.windows.net/c/b?sv=2022-11-02&ss=b&srt=sco&sp=rwdlacupiytfx&se=2027-01-01T00%3A00%3A00Z&st=2026-01-01T00%3A00%3A00Z&spr=https&sig=abc%2Fdef%3D",
+          "ok": true
+        },
+        "shipped": {
+          "value": "https://acct.blob.core.windows.net/c/b?sv=2022-11-02&ss=b&srt=sco&sp=rwdlacupiytfx&se=2027-01-01T00%3A00%3A00Z&st=2026-01-01T00%3A00%3A00Z&spr=https&sig=abc%2Fdef%3D",
+          "ok": true
+        },
+        "upstream": {
+          "value": "https://acct.blob.core.windows.net/c/b",
+          "ok": false
+        }
+      }
+    },
+    {
+      "id": "client_bytes_merge",
+      "description": "Client.get(url) with client-level params keeps bytes and adds keys",
+      "expected": "__U_AWS__&api=k",
+      "results": {
+        "pr3759": {
+          "value": "https://acct.blob.core.windows.net/c/b?api=k",
+          "ok": false
+        },
+        "pr3761": {
+          "value": "https://acct.blob.core.windows.net/c/b?sv=2022-11-02&ss=b&srt=sco&sp=rwdlacupiytfx&se=2027-01-01T00%3A00%3A00Z&st=2026-01-01T00%3A00%3A00Z&spr=https&sig=abc%2Fdef%3D&api=k",
+          "ok": false
+        },
+        "shipped": {
+          "value": "https://acct.blob.core.windows.net/c/b?sv=2022-11-02&ss=b&srt=sco&sp=rwdlacupiytfx&se=2027-01-01T00%3A00%3A00Z&st=2026-01-01T00%3A00%3A00Z&spr=https&sig=abc%2Fdef%3D&api=k",
+          "ok": false
+        },
+        "upstream": {
+          "value": "https://acct.blob.core.windows.net/c/b?api=k",
+          "ok": false
+        }
+      }
+    },
+    {
+      "id": "bytes_empty_params_pct20",
+      "description": "params={} must not re-encode an existing %20 as +",
+      "expected": "https://e.com/p?q=a%20b",
+      "results": {
+        "pr3759": {
+          "value": "https://e.com/p?q=a+b",
+          "ok": false
+        },
+        "pr3761": {
+          "value": "https://e.com/p?q=a+b",
+          "ok": false
+        },
+        "shipped": {
+          "value": "https://e.com/p?q=a+b",
+          "ok": false
+        },
+        "upstream": {
+          "value": "https://e.com/p",
+          "ok": false
+        }
+      }
+    },
+    {
+      "id": "bytes_none_params_pct20",
+      "description": "params=None must not re-encode an existing %20 as +",
+      "expected": "https://e.com/p?q=a%20b",
+      "results": {
+        "pr3759": {
+          "value": "https://e.com/p?q=a%20b",
+          "ok": true
+        },
+        "pr3761": {
+          "value": "https://e.com/p?q=a%20b",
+          "ok": true
+        },
+        "shipped": {
+          "value": "https://e.com/p?q=a%20b",
+          "ok": true
+        },
+        "upstream": {
+          "value": "https://e.com/p?q=a%20b",
+          "ok": true
+        }
+      }
+    }
+  ],
+  "arms": [
+    "pr3759",
+    "pr3761",
+    "shipped",
+    "upstream"
+  ]
+}

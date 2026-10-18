@@ -1,0 +1,332 @@
+{
+  "rows": [
+    {
+      "mutant": "M1_revert_to_replace",
+      "description": "revert the fix entirely",
+      "verdict": "real blind spot",
+      "differing_cases": 17,
+      "diffs": [
+        {
+          "case": "issue_repro",
+          "shipped": "https://safebooru.org/index.php?page=post&s=list&pid=0&tags=k-on%21",
+          "mutant": "https://safebooru.org/index.php?pid=0&tags=k-on%21"
+        },
+        {
+          "case": "override_and_keep",
+          "shipped": "https://example.com/search?a=new&keep=1&b=2",
+          "mutant": "https://example.com/search?a=new&b=2"
+        },
+        {
+          "case": "empty_params_keeps_query",
+          "shipped": "https://example.com/search?token=abc",
+          "mutant": "https://example.com/search"
+        },
+        {
+          "case": "repeated_keys_survive",
+          "shipped": "tag=python;tag=httpx;page=2",
+          "mutant": "page=2"
+        },
+        {
+          "case": "url_object_input",
+          "shipped": "https://example.com/search?sort=recent&page=3",
+          "mutant": "https://example.com/search?page=3"
+        },
+        {
+          "case": "fragment_preserved",
+          "shipped": "https://example.com/s?a=1&b=2#sec2",
+          "mutant": "https://example.com/s?b=2#sec2"
+        },
+        {
+          "case": "relative_url",
+          "shipped": "/s?a=1&b=2",
+          "mutant": "/s?b=2"
+        },
+        {
+          "case": "list_value",
+          "shipped": "https://e.com/s?a=1&t=x&t=y",
+          "mutant": "https://e.com/s?t=x&t=y"
+        },
+        {
+          "case": "bytes_pct2F_upper",
+          "shipped": "https://e.com/p?sig=ab%2Fcd&x=1",
+          "mutant": "https://e.com/p?x=1"
+        },
+        {
+          "case": "bytes_pct2f_lower",
+          "shipped": "https://e.com/p?sig=ab%2Fcd&x=1",
+          "mutant": "https://e.com/p?x=1"
+        },
+        {
+          "case": "bytes_pct20",
+          "shipped": "https://e.com/p?sig=ab+cd&x=1",
+          "mutant": "https://e.com/p?x=1"
+        },
+        {
+          "case": "bytes_tilde",
+          "shipped": "https://e.com/p?t=~&x=1",
+          "mutant": "https://e.com/p?x=1"
+        },
+        {
+          "case": "bytes_empty_key",
+          "shipped": "https://e.com/p?flag=&x=1",
+          "mutant": "https://e.com/p?x=1"
+        },
+        {
+          "case": "bytes_presigned_empty",
+          "shipped": "https://acct.blob.core.windows.net/c/b?sv=2022-11-02&ss=b&srt=sco&sp=rwdlacupiytfx&se=2027-01-01T00%3A00%3A00Z&st=2026-01-01T00%3A00%3A00Z&spr=https&sig=abc%2Fdef%3D",
+          "mutant": "https://acct.blob.core.windows.net/c/b"
+        },
+        {
+          "case": "client_bytes_empty",
+          "shipped": "https://acct.blob.core.windows.net/c/b?sv=2022-11-02&ss=b&srt=sco&sp=rwdlacupiytfx&se=2027-01-01T00%3A00%3A00Z&st=2026-01-01T00%3A00%3A00Z&spr=https&sig=abc%2Fdef%3D",
+          "mutant": "https://acct.blob.core.windows.net/c/b"
+        },
+        {
+          "case": "client_bytes_merge",
+          "shipped": "https://acct.blob.core.windows.net/c/b?sv=2022-11-02&ss=b&srt=sco&sp=rwdlacupiytfx&se=2027-01-01T00%3A00%3A00Z&st=2026-01-01T00%3A00%3A00Z&spr=https&sig=abc%2Fdef%3D&api=k",
+          "mutant": "https://acct.blob.core.windows.net/c/b?api=k"
+        },
+        {
+          "case": "bytes_empty_params_pct20",
+          "shipped": "https://e.com/p?q=a+b",
+          "mutant": "https://e.com/p"
+        }
+      ]
+    },
+    {
+      "mutant": "M2_copy_with_instead_of_merge",
+      "description": "replace the query instead of merging it",
+      "verdict": "real blind spot",
+      "differing_cases": 17,
+      "diffs": [
+        {
+          "case": "issue_repro",
+          "shipped": "https://safebooru.org/index.php?page=post&s=list&pid=0&tags=k-on%21",
+          "mutant": "https://safebooru.org/index.php?pid=0&tags=k-on%21"
+        },
+        {
+          "case": "override_and_keep",
+          "shipped": "https://example.com/search?a=new&keep=1&b=2",
+          "mutant": "https://example.com/search?a=new&b=2"
+        },
+        {
+          "case": "empty_params_keeps_query",
+          "shipped": "https://example.com/search?token=abc",
+          "mutant": "https://example.com/search"
+        },
+        {
+          "case": "repeated_keys_survive",
+          "shipped": "tag=python;tag=httpx;page=2",
+          "mutant": "page=2"
+        },
+        {
+          "case": "url_object_input",
+          "shipped": "https://example.com/search?sort=recent&page=3",
+          "mutant": "https://example.com/search?page=3"
+        },
+        {
+          "case": "fragment_preserved",
+          "shipped": "https://example.com/s?a=1&b=2#sec2",
+          "mutant": "https://example.com/s?b=2#sec2"
+        },
+        {
+          "case": "relative_url",
+          "shipped": "/s?a=1&b=2",
+          "mutant": "/s?b=2"
+        },
+        {
+          "case": "list_value",
+          "shipped": "https://e.com/s?a=1&t=x&t=y",
+          "mutant": "https://e.com/s?t=x&t=y"
+        },
+        {
+          "case": "bytes_pct2F_upper",
+          "shipped": "https://e.com/p?sig=ab%2Fcd&x=1",
+          "mutant": "https://e.com/p?x=1"
+        },
+        {
+          "case": "bytes_pct2f_lower",
+          "shipped": "https://e.com/p?sig=ab%2Fcd&x=1",
+          "mutant": "https://e.com/p?x=1"
+        },
+        {
+          "case": "bytes_pct20",
+          "shipped": "https://e.com/p?sig=ab+cd&x=1",
+          "mutant": "https://e.com/p?x=1"
+        },
+        {
+          "case": "bytes_tilde",
+          "shipped": "https://e.com/p?t=~&x=1",
+          "mutant": "https://e.com/p?x=1"
+        },
+        {
+          "case": "bytes_empty_key",
+          "shipped": "https://e.com/p?flag=&x=1",
+          "mutant": "https://e.com/p?x=1"
+        },
+        {
+          "case": "bytes_presigned_empty",
+          "shipped": "https://acct.blob.core.windows.net/c/b?sv=2022-11-02&ss=b&srt=sco&sp=rwdlacupiytfx&se=2027-01-01T00%3A00%3A00Z&st=2026-01-01T00%3A00%3A00Z&spr=https&sig=abc%2Fdef%3D",
+          "mutant": "https://acct.blob.core.windows.net/c/b"
+        },
+        {
+          "case": "client_bytes_empty",
+          "shipped": "https://acct.blob.core.windows.net/c/b?sv=2022-11-02&ss=b&srt=sco&sp=rwdlacupiytfx&se=2027-01-01T00%3A00%3A00Z&st=2026-01-01T00%3A00%3A00Z&spr=https&sig=abc%2Fdef%3D",
+          "mutant": "https://acct.blob.core.windows.net/c/b"
+        },
+        {
+          "case": "client_bytes_merge",
+          "shipped": "https://acct.blob.core.windows.net/c/b?sv=2022-11-02&ss=b&srt=sco&sp=rwdlacupiytfx&se=2027-01-01T00%3A00%3A00Z&st=2026-01-01T00%3A00%3A00Z&spr=https&sig=abc%2Fdef%3D&api=k",
+          "mutant": "https://acct.blob.core.windows.net/c/b?api=k"
+        },
+        {
+          "case": "bytes_empty_params_pct20",
+          "shipped": "https://e.com/p?q=a+b",
+          "mutant": "https://e.com/p"
+        }
+      ]
+    },
+    {
+      "mutant": "M3_truthiness_guard",
+      "description": "use truthiness instead of an identity check",
+      "verdict": "real blind spot",
+      "differing_cases": 1,
+      "diffs": [
+        {
+          "case": "bytes_empty_params_pct20",
+          "shipped": "https://e.com/p?q=a+b",
+          "mutant": "https://e.com/p?q=a%20b"
+        }
+      ]
+    },
+    {
+      "mutant": "M4_drop_none_branch",
+      "description": "always merge, never take the fast path",
+      "verdict": "real blind spot",
+      "differing_cases": 1,
+      "diffs": [
+        {
+          "case": "bytes_none_params_pct20",
+          "shipped": "https://e.com/p?q=a%20b",
+          "mutant": "https://e.com/p?q=a+b"
+        }
+      ]
+    },
+    {
+      "mutant": "M5_drop_fragment",
+      "description": "merge but silently drop the URL fragment",
+      "verdict": "real blind spot",
+      "differing_cases": 1,
+      "diffs": [
+        {
+          "case": "fragment_preserved",
+          "shipped": "https://example.com/s?a=1&b=2#sec2",
+          "mutant": "https://example.com/s?a=1&b=2"
+        }
+      ]
+    },
+    {
+      "mutant": "M6_merge_then_clear_old_keys",
+      "description": "keep the new signature but still discard old keys",
+      "verdict": "real blind spot",
+      "differing_cases": 19,
+      "diffs": [
+        {
+          "case": "issue_repro",
+          "shipped": "https://safebooru.org/index.php?page=post&s=list&pid=0&tags=k-on%21",
+          "mutant": "ERROR:NameError: name 'QueryParams' is not defined"
+        },
+        {
+          "case": "override_and_keep",
+          "shipped": "https://example.com/search?a=new&keep=1&b=2",
+          "mutant": "ERROR:NameError: name 'QueryParams' is not defined"
+        },
+        {
+          "case": "empty_params_keeps_query",
+          "shipped": "https://example.com/search?token=abc",
+          "mutant": "ERROR:NameError: name 'QueryParams' is not defined"
+        },
+        {
+          "case": "repeated_keys_survive",
+          "shipped": "tag=python;tag=httpx;page=2",
+          "mutant": "ERROR:NameError: name 'QueryParams' is not defined"
+        },
+        {
+          "case": "url_object_input",
+          "shipped": "https://example.com/search?sort=recent&page=3",
+          "mutant": "ERROR:NameError: name 'QueryParams' is not defined"
+        },
+        {
+          "case": "no_existing_query",
+          "shipped": "https://example.com/search?q=hello+world",
+          "mutant": "ERROR:NameError: name 'QueryParams' is not defined"
+        },
+        {
+          "case": "fragment_preserved",
+          "shipped": "https://example.com/s?a=1&b=2#sec2",
+          "mutant": "ERROR:NameError: name 'QueryParams' is not defined"
+        },
+        {
+          "case": "relative_url",
+          "shipped": "/s?a=1&b=2",
+          "mutant": "ERROR:NameError: name 'QueryParams' is not defined"
+        },
+        {
+          "case": "dup_key_override",
+          "shipped": "https://e.com/s?a=9",
+          "mutant": "ERROR:NameError: name 'QueryParams' is not defined"
+        },
+        {
+          "case": "list_value",
+          "shipped": "https://e.com/s?a=1&t=x&t=y",
+          "mutant": "ERROR:NameError: name 'QueryParams' is not defined"
+        },
+        {
+          "case": "bytes_pct2F_upper",
+          "shipped": "https://e.com/p?sig=ab%2Fcd&x=1",
+          "mutant": "ERROR:NameError: name 'QueryParams' is not defined"
+        },
+        {
+          "case": "bytes_pct2f_lower",
+          "shipped": "https://e.com/p?sig=ab%2Fcd&x=1",
+          "mutant": "ERROR:NameError: name 'QueryParams' is not defined"
+        },
+        {
+          "case": "bytes_pct20",
+          "shipped": "https://e.com/p?sig=ab+cd&x=1",
+          "mutant": "ERROR:NameError: name 'QueryParams' is not defined"
+        },
+        {
+          "case": "bytes_tilde",
+          "shipped": "https://e.com/p?t=~&x=1",
+          "mutant": "ERROR:NameError: name 'QueryParams' is not defined"
+        },
+        {
+          "case": "bytes_empty_key",
+          "shipped": "https://e.com/p?flag=&x=1",
+          "mutant": "ERROR:NameError: name 'QueryParams' is not defined"
+        },
+        {
+          "case": "bytes_presigned_empty",
+          "shipped": "https://acct.blob.core.windows.net/c/b?sv=2022-11-02&ss=b&srt=sco&sp=rwdlacupiytfx&se=2027-01-01T00%3A00%3A00Z&st=2026-01-01T00%3A00%3A00Z&spr=https&sig=abc%2Fdef%3D",
+          "mutant": "ERROR:NameError: name 'QueryParams' is not defined"
+        },
+        {
+          "case": "client_bytes_empty",
+          "shipped": "https://acct.blob.core.windows.net/c/b?sv=2022-11-02&ss=b&srt=sco&sp=rwdlacupiytfx&se=2027-01-01T00%3A00%3A00Z&st=2026-01-01T00%3A00%3A00Z&spr=https&sig=abc%2Fdef%3D",
+          "mutant": "ERROR:NameError: name 'QueryParams' is not defined"
+        },
+        {
+          "case": "client_bytes_merge",
+          "shipped": "https://acct.blob.core.windows.net/c/b?sv=2022-11-02&ss=b&srt=sco&sp=rwdlacupiytfx&se=2027-01-01T00%3A00%3A00Z&st=2026-01-01T00%3A00%3A00Z&spr=https&sig=abc%2Fdef%3D&api=k",
+          "mutant": "ERROR:NameError: name 'QueryParams' is not defined"
+        },
+        {
+          "case": "bytes_empty_params_pct20",
+          "shipped": "https://e.com/p?q=a+b",
+          "mutant": "ERROR:NameError: name 'QueryParams' is not defined"
+        }
+      ]
+    }
+  ]
+}
